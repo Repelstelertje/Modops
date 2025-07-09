@@ -9,13 +9,18 @@ ModOps is a simple PHP application that serves a multi-language landing page whe
 
 ### Environment variables
 
-The form processing script expects a Google reCAPTCHA secret key. Set the following environment variable before starting the application:
+The form uses Google's reCAPTCHA service. Provide your secret key through the
+`RECAPTCHA_SECRET` environment variable so that `views/form.php` can verify
+incoming requests.
 
-```bash
-export RECAPTCHA_SECRET="<your-secret-key>"
+Example setup on a UNIX shell:
+
+```sh
+export RECAPTCHA_SECRET=your-secret-key
 ```
 
-The site key used by the reCAPTCHA widget can be adjusted in `views/apply.php` if you use your own keys.
+Ensure this variable is available to the PHP process (for example via your
+web server or deployment configuration).
 
 ## Language selection
 
@@ -29,4 +34,4 @@ You can run the site using PHP’s built-in server:
 php -S localhost:8000
 ```
 
-Then open `http://localhost:8000/index.php` in your browser.
+

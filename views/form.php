@@ -1,4 +1,13 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Generate a CSRF token when rendering the form
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Initialize variables with default values and error messages
 $fnameErr = $lnameErr = $visitor_emailErr = $contactErr = $countryErr = $motivationErr = '';
 $fname = $lname = $visitor_email = $contact = $country = $availability = $reference = $experience = $motivation = '';
@@ -6,10 +15,17 @@ $language_arr = [];
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (
+        !isset($_POST['csrf_token'], $_SESSION['csrf_token']) ||
+        !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+    ) {
+        die('Invalid CSRF token');
+    }
 
     // Verify reCAPTCHA response
     $recaptcha_response = $_POST['g-recaptcha-response'];
-    $secret_key = '';
+    // Read the reCAPTCHA secret key from the environment
+    $secret_key = isset($_ENV['RECAPTCHA_SECRET']) ? $_ENV['RECAPTCHA_SECRET'] : '';
     $url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = [
         'secret'   => $secret_key,
@@ -85,8 +101,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ip_address = $_SERVER['REMOTE_ADDR'];
 
         // Fetch IP location data via ip-api.com
-        $ip_json = @file_get_contents("http://ip-api.com/json/{$ip_address}?fields=status,country,regionName,city,isp,query");
-        $ip_data = json_decode($ip_json, true);
+        $ip_json = @file_get_contents("https://ip-api.com/json/{$ip_address}?fields=status,country,regionName,city,isp,query");
+        if ($ip_json === false) {
+            $ip_data = null;
+        } else {
+            $ip_data = json_decode($ip_json, true);
+        }
 
         if ($ip_data && $ip_data['status'] === 'success') {
             $ip_country = $ip_data['country'] ?? 'Unknown';
@@ -126,7 +146,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Send email
         mail($to, 'New job application', $email_body, $email_headers);
 
-        // Redirect to confirmation page
+        // Invalidate CSRF token and redirect to confirmation page
+        unset($_SESSION['csrf_token']);
         header('Location: ../conv.php');
         exit;
     }
