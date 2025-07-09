@@ -11,6 +11,7 @@
         <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
             <div class="col-lg-12">
                 <form name="contactForm1" method="post" action="views/form.php" class="p-5 bg-white" onSubmit="gtag('event', 'submit', {'event_category': 'Application'});">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8') ?>">
                     <div class="row form-group">
                         <div class="col-md-6">
                             <label for="fname"><?=$lang['FIRSTNAME']?></label>

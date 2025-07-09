@@ -1,4 +1,13 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Generate a CSRF token when rendering the form
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Initialize variables with default values and error messages
 $fnameErr = $lnameErr = $visitor_emailErr = $contactErr = $countryErr = $motivationErr = '';
 $fname = $lname = $visitor_email = $contact = $country = $availability = $reference = $experience = $motivation = '';
@@ -6,6 +15,12 @@ $language_arr = [];
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (
+        !isset($_POST['csrf_token'], $_SESSION['csrf_token']) ||
+        !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+    ) {
+        die('Invalid CSRF token');
+    }
 
     // Verify reCAPTCHA response
     $recaptcha_response = $_POST['g-recaptcha-response'];
@@ -131,7 +146,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Send email
         mail($to, 'New job application', $email_body, $email_headers);
 
-        // Redirect to confirmation page
+        // Invalidate CSRF token and redirect to confirmation page
+        unset($_SESSION['csrf_token']);
         header('Location: ../conv.php');
         exit;
     }
