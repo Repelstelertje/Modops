@@ -86,8 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ip_address = $_SERVER['REMOTE_ADDR'];
 
         // Fetch IP location data via ip-api.com
-        $ip_json = @file_get_contents("http://ip-api.com/json/{$ip_address}?fields=status,country,regionName,city,isp,query");
-        $ip_data = json_decode($ip_json, true);
+        $ip_json = @file_get_contents("https://ip-api.com/json/{$ip_address}?fields=status,country,regionName,city,isp,query");
+        if ($ip_json === false) {
+            $ip_data = null;
+        } else {
+            $ip_data = json_decode($ip_json, true);
+        }
 
         if ($ip_data && $ip_data['status'] === 'success') {
             $ip_country = $ip_data['country'] ?? 'Unknown';
