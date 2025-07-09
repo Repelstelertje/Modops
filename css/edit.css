@@ -1,0 +1,78 @@
+a {
+    text-decoration: none;
+}
+.btn-dark {
+    background-color: #225892;
+}
+.bg-input{
+    background-color: #225892;
+}
+.bg-input:focus {
+    background-color: #225892;
+}
+.navbar-brand {
+    color: #225892 !important;
+}
+.nutshell li{
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+.nutshell li:before {
+    left: 0;
+    font-size: 20px;
+    top: -0.3rem;
+    content: "\2713\0020";
+    position: absolute;
+    color: #225892;
+}
+.earnings-table {
+    width: 100%;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+label {
+    margin: 10px 0px 5px 0px;
+}
+.form-message {
+    margin: 0;
+}
+.error {
+    color: #225892;
+}
+.accordion-body {
+    background-color: rgba(49, 149, 207, 0.25);
+}
+.flagico {
+    max-width: 24px;
+}
+.drop-width {
+    max-width: 24px;
+}
+#calc {
+    background:linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(232, 236, 241, 0.55)), url('../img/calc.png');
+    background-size: cover;
+    min-height: 100%;
+}
+.no-radius {
+    border-radius: 0 !important;
+}
+@media only screen and (max-width: 600px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+
+   opacity: 1;
+
+}
+.form-group {
+    margin-bottom: 10px;
+}
+.dropdown-menu {
+    border: none;
+}
