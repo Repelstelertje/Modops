@@ -56,10 +56,11 @@ window.addEventListener('DOMContentLoaded', event => {
         elements: '#portfolio a.portfolio-box'
     });
 
+    // Call earnings calculator once the page has been parsed
+    computeLoon();
 });
 
 // Calculator
-window.onload = computeLoon();
 function computeLoon() {
 var berichten     = document.getElementById('berichten').value;
 var werkDagen     = document.getElementById('werkDagen').value;
