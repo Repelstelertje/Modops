@@ -11,8 +11,8 @@
                 <li class="nav-item"><a class="nav-link" href="#apply"><?=$lang['APPLY-NOW']?></a></li>
                 <li class="nav-item"><a class="nav-link" href="#faq"><?=$lang['FAQ']?></a></li>
                 <?php
-                // Bepaal actieve taal vanuit sessie of default
-                $current_lang = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en';
+                // Gebruik taal uit de pagina of val terug op de sessie
+                $current_lang = $current_lang ?? ($_SESSION['lang'] ?? 'en');
                 $flags = [
                     'en' => ['img' => 'en.png', 'alt' => 'British flag'],
                     'nl' => ['img' => 'nl.png', 'alt' => 'Dutch flag'],
