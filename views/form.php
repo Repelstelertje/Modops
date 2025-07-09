@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Verify reCAPTCHA response
     $recaptcha_response = $_POST['g-recaptcha-response'];
-    $secret_key = '6LcHHZYpAAAAAO0fQPUipDrAO_-2CnAJBot9vxsF';
+    $secret_key = '';
     $url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = [
         'secret'   => $secret_key,
