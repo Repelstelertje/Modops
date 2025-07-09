@@ -2,7 +2,7 @@
         <footer class="bg-light py-5" id="footer">
             <div class="container px-4 px-lg-5">
                 <div class="small text-center"><a href="https://modops.nl">Home</a> - <a href="tac.php">Terms & Conditions</a> - <a href="pp.php">Privacy Policy</a> - <a href="cp.php">Cookie Policy</a> - <a href="#" onclick="resetCookieConsent(); return false;"><?= $lang['cookie_change_link']; ?></a></p></div>
-                <div class="mt-5 small text-center">Copyright &copy; <?php echo date(Y) ?> - ModOps.nl - <?=$lang['FOOTER-RIGHTS']?></div>
+                <div class="mt-5 small text-center">Copyright &copy; <?php echo date('Y') ?> - ModOps.nl - <?=$lang['FOOTER-RIGHTS']?></div>
             </div>
         </footer>
         
