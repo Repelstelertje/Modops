@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Verify reCAPTCHA response
     $recaptcha_response = $_POST['g-recaptcha-response'];
-    $secret_key = '';
+    // Read the reCAPTCHA secret key from the environment
+    $secret_key = isset($_ENV['RECAPTCHA_SECRET']) ? $_ENV['RECAPTCHA_SECRET'] : '';
     $url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = [
         'secret'   => $secret_key,
