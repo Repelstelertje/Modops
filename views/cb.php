@@ -3,7 +3,7 @@
   <div style="max-width: 960px; margin: auto;">
     <p style="margin-bottom: 10px;">
       <?= $lang['cookie_message']; ?>
-      <a href="/cp.php" target="_blank"><?= $lang['cookie_policy']; ?></a>.
+      <a href="#" data-bs-toggle="modal" data-bs-target="#cookieModal"><?= $lang['cookie_policy']; ?></a>.
     </p>
     <form id="cookie-form">
       <label><input type="checkbox" disabled checked> <?= $lang['cookie_necessary']; ?></label><br>

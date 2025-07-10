@@ -1,7 +1,6 @@
 <section class="page-section" id="apply">
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
-      <a href="https://modops.nl">back</a>
       <h1>Cookie Policy</h1>
       <p><strong>Effective date:</strong> 01-06-2025</p>
 

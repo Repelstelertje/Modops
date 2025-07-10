@@ -1,7 +1,6 @@
 <section class="page-section" id="apply">
 	<div class="container px-4 px-lg-5">
-		<div class="row gx-4 gx-lg-5 justify-content-center">
-			<a href="https://modops.nl">back</a>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
 			<h1>TERMS AND CONDITIONS</h1>
 			<p>Last updated: 2024-02-08</p>
 			<p>1. <b>Introduction</b></p>
