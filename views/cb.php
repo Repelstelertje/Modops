@@ -120,3 +120,21 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
+<script>
+function resetCookieConsent() {
+  localStorage.removeItem('cookieConsent');
+  var banner = document.getElementById('cookie-banner');
+  if (banner) {
+    banner.style.display = 'block';
+  }
+  var stats = document.getElementById('cookie-statistics');
+  if (stats) {
+    stats.checked = false;
+  }
+  var marketing = document.getElementById('cookie-marketing');
+  if (marketing) {
+    marketing.checked = false;
+  }
+}
+</script>
